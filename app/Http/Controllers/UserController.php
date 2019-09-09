@@ -28,7 +28,7 @@ class UserController extends Controller
             return response()->json(['error' => 'could_not_create_token'], 500);
         }
 
-        return response()->json(compact('token'));
+        return response()->json(compact('token'), 200);
     }
 
     /**
@@ -86,7 +86,7 @@ class UserController extends Controller
 
         }
 
-        return response()->json(compact('user'));
+        return response()->json(compact('user'), 200);
     }
 
     /**
@@ -100,5 +100,11 @@ class UserController extends Controller
             'statusMessage' => 'success',
             'message' => 'User Logged Out',
         ], 200);
+    }
+
+    public function users()
+    {
+        $users = User::all();
+        return response()->json(compact('users'), 200);
     }
 }
